@@ -11,26 +11,25 @@ class _HomeState extends State<Home> {
 
   List<Map> data = [
     {
-      'name': ' Tony Stark',
-      'postTitle': 'Working on Mark III! What you guys up to?',
-      'timestamp': '20 March, 2021',
+      'name': 'Albert Camus',
+      'postTitle': 'I did it! I got a job!',
+      'postText': 'Title says it all:)',
+      'timestamp': '21 March, 2021',
       'profilePic':
-          'https://pbs.twimg.com/profile_images/2753097667/471b1b700c95affe5b8ee7cc37bd11b6_400x400.jpeg',
-      'postPic':
-          'https://www.freshnessmag.com/.image/c_limit%2Ccs_srgb%2Cq_auto:good%2Cw_570/MTM2ODM2NjQ2MzE4MzE5MTk5/iron-man-3---the-technology-behind-the-mark-42-suit--video---0.webp',
-      'likes': 144,
-      'comments': 24,
+          'https://s.france24.com/media/display/b5d2f706-0a20-11e9-9cdb-005056bff430/w:1280/p:1x1/camus%20jpg.jpg',
+      'likes': 161,
+      'comments': 34,
     },
     {
-      'name': 'Thor',
-      'postTitle': 'Stormbreaker > Mjolnir?',
-      'timestamp': '19 March, 2021',
+      'name': 'Arthur Schopenhauer',
+      'postTitle': 'I need therapy but don’t want to get it',
+      'postText':
+          'I feel unmotivated everyday. I started uni and can’t study. I used to go the gym but honestly I feel burnt out so I now go occasionally. I have so much uni work but I can’t be bothered. The high school to uni transition has made it super hard for me. I started a business but my social media manager scammed me. I’m afraid to be alone, and when I am alone I distract myself on my phone. Social media drains me. When I’m alone without distractions I think too much. My heart feels like it’s sinking. I don’t want to go to therapy because it’s expensive and I can’t drive myself there. If I tell my parents they’ll make me go on walks and stuff and I don’t want to do that. I want to be left alone when I’m home, but can’t be alone when I’m not. Someone give me tips to manage everything. How do I focus and do assignments. How do I let my brain rest. I’ve tried meditating but I get distracted. I know I need help but I just don’t want to get help, if that makes sense. I also feel sad a lot lately',
+      'timestamp': '20 March, 2021',
       'profilePic':
-          'https://upload.wikimedia.org/wikipedia/en/3/3c/Chris_Hemsworth_as_Thor.jpg',
-      'postPic':
-          'https://static2.srcdn.com/wordpress/wp-content/uploads/2019/11/Thor-Stormbreaker-Mjolnir.jpg?q=50&fit=crop&w=960&h=500&dpr=1.5',
-      'likes': 121,
-      'comments': 14,
+          'https://styles.redditmedia.com/t5_2rpbb/styles/communityIcon_52c202jckjd21.png?width=256&s=84e504e6bcdf3dafbb9fc8f59e38e7820ee2b629',
+      'likes': 144,
+      'comments': 24,
     },
   ];
 
@@ -39,9 +38,10 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).canvasColor,
+        leading: Container(),
         title: Text(
           'Healery',
-          style: TextStyle(color: Theme.of(context).primaryColor),
+          style: TextStyle(color: Theme.of(context).accentColor),
         ),
         centerTitle: true,
       ),
@@ -78,10 +78,13 @@ class _HomeState extends State<Home> {
                     style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
                   ),
                 ),
-                SizedBox(height: 10),
-                Image.network(
-                  data[index]['postPic'],
-                  width: double.infinity,
+                SizedBox(height: 20),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    data[index]['postText'],
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                  ),
                 ),
                 SizedBox(height: 20),
                 Row(
@@ -105,21 +108,23 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: SnakeNavigationBar.color(
         behaviour: SnakeBarBehaviour.floating,
+        backgroundColor: Theme.of(context).accentColor,
         snakeShape: SnakeShape.circle,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(25)),
         ),
         padding: EdgeInsets.fromLTRB(12, 5, 12, 12),
         snakeViewColor: Theme.of(context).canvasColor,
-        selectedItemColor: SnakeShape.circle == SnakeShape.indicator
-            ? Theme.of(context).canvasColor
-            : null,
+        selectedItemColor: Theme.of(context).accentColor,
         unselectedItemColor: Theme.of(context).canvasColor,
         currentIndex: _selectedItemPosition,
         onTap: (index) => setState(() => _selectedItemPosition = index),
         items: [
           const BottomNavigationBarItem(
-              icon: Icon(Icons.home_rounded), label: 'home'),
+              icon: Icon(
+                Icons.home_rounded,
+              ),
+              label: 'home'),
           const BottomNavigationBarItem(
               icon: Icon(Icons.edit_rounded), label: 'post'),
           const BottomNavigationBarItem(
