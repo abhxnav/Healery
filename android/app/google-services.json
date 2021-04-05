@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "966624602865",
+    "project_id": "healery-808b5",
+    "storage_bucket": "healery-808b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:966624602865:android:484d9854fbb247930b5750",
+        "android_client_info": {
+          "package_name": "com.healery"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "966624602865-dbmcerm5e3uh2sv2hl2kdn3pq7po960s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCSE4g1G3UYog5YzvUwXgnOveSM8PJBljk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "966624602865-dbmcerm5e3uh2sv2hl2kdn3pq7po960s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
