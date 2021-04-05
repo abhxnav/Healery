@@ -41,7 +41,11 @@ class _HomeState extends State<Home> {
         leading: Container(),
         title: Text(
           'Healery',
-          style: TextStyle(color: Theme.of(context).accentColor),
+          style: TextStyle(
+            fontSize: 25.0,
+            fontFamily: 'Syne',
+            color: Theme.of(context).accentColor,
+          ),
         ),
         centerTitle: true,
       ),

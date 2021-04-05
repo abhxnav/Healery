@@ -6,23 +6,10 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Theme.of(context).canvasColor,
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).canvasColor,
-        title: Text(
-          'Healery',
-          style: TextStyle(color: Theme.of(context).primaryColor),
-        ),
-        centerTitle: true,
-      ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
-              'assets/logo.png',
-              color: Theme.of(context).primaryColor,
-            ),
-            SizedBox(height: 50),
             Container(
               width: 300,
               child: Column(
@@ -30,13 +17,12 @@ class AuthScreen extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                      fillColor: Theme.of(context).backgroundColor,
+                      EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                      fillColor: Colors.grey.shade900,
                       focusColor: Theme.of(context).backgroundColor,
                       filled: true,
-                      hintText: 'Email',
-                      hintStyle:
-                          TextStyle(color: Theme.of(context).primaryColor),
+                      hintText: 'Username',
+                      hintStyle: TextStyle(color: Colors.grey.shade700),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
                           width: 0,
@@ -55,13 +41,12 @@ class AuthScreen extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 0, horizontal: 15),
-                      fillColor: Theme.of(context).backgroundColor,
+                      EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                      fillColor: Colors.grey.shade900,
                       focusColor: Theme.of(context).backgroundColor,
                       filled: true,
                       hintText: 'Password',
-                      hintStyle:
-                          TextStyle(color: Theme.of(context).primaryColor),
+                      hintStyle: TextStyle(color: Colors.grey.shade700),
                       border: OutlineInputBorder(
                         borderSide: BorderSide(
                           width: 0,
@@ -74,9 +59,47 @@ class AuthScreen extends StatelessWidget {
                     ),
                     keyboardType: TextInputType.emailAddress,
                   ),
-                  SizedBox(height: 50),
-                  Container(
-                    color: Theme.of(context).backgroundColor,
+                  SizedBox(
+                    height: 40,
+                  ),
+                  Card(
+                    color: Theme.of(context).accentColor,
+                    child: Container(
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                      width: 230,
+                      child: Text(
+                        'Login',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 15,
+                  ),
+                  Text(
+                    'forgot password?',
+                    style: TextStyle(
+                      color: Colors.grey.shade600,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40,
+                  ),
+                  SizedBox(
+                    height: 20,
+                    width: 200,
+                    child: Divider(
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20,
+                  ),
+                  Card(
+                    color: Theme.of(context).accentColor,
                     child: TextButton(
                       onPressed: () {
                         Navigator.push(context,
@@ -84,13 +107,13 @@ class AuthScreen extends StatelessWidget {
                       },
                       child: Container(
                         padding:
-                            EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+                        EdgeInsets.symmetric(vertical: 5, horizontal: 0),
                         width: 230,
                         child: Text(
                           'Sign Up',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                            color: Theme.of(context).primaryColor,
+                            color: Colors.white,
                           ),
                         ),
                       ),
@@ -100,11 +123,15 @@ class AuthScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 10),
-            SizedBox(height: 20),
-            Text('Or'),
-            SizedBox(height: 30),
-            Container(
-              color: Theme.of(context).backgroundColor,
+            Text(
+              'Or',
+              style: TextStyle(
+                color: Colors.grey.shade600,
+              ),
+            ),
+            SizedBox(height: 10),
+            Card(
+              color: Theme.of(context).accentColor,
               child: TextButton(
                 onPressed: () {
                   Navigator.push(
@@ -117,15 +144,15 @@ class AuthScreen extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/google_logo.png',
-                        width: 37,
+                        'assets/images/google_logo.png',
+                        width: 20,
                         fit: BoxFit.cover,
                       ),
                       SizedBox(width: 20),
                       Text(
                         'Continue with Google',
                         style: TextStyle(
-                          color: Theme.of(context).primaryColor,
+                          color: Colors.white,
                         ),
                       )
                     ],
