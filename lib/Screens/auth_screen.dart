@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:healery/Providers/auth.dart';
 import 'package:healery/Screens/home.dart';
 
-class AuthScreen extends StatelessWidget {
+class AuthScreen extends StatefulWidget {
+  @override
+  _AuthScreenState createState() => _AuthScreenState();
+}
+
+class _AuthScreenState extends State<AuthScreen> {
+  bool isLoading = false;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +24,7 @@ class AuthScreen extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                       contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 15),
                       fillColor: Colors.grey.shade900,
                       focusColor: Theme.of(context).backgroundColor,
                       filled: true,
@@ -41,7 +48,7 @@ class AuthScreen extends StatelessWidget {
                   TextField(
                     decoration: InputDecoration(
                       contentPadding:
-                      EdgeInsets.symmetric(vertical: 0, horizontal: 15),
+                          EdgeInsets.symmetric(vertical: 0, horizontal: 15),
                       fillColor: Colors.grey.shade900,
                       focusColor: Theme.of(context).backgroundColor,
                       filled: true,
@@ -65,7 +72,8 @@ class AuthScreen extends StatelessWidget {
                   Card(
                     color: Theme.of(context).accentColor,
                     child: Container(
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 0),
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 0),
                       width: 230,
                       child: Text(
                         'Login',
@@ -107,7 +115,7 @@ class AuthScreen extends StatelessWidget {
                       },
                       child: Container(
                         padding:
-                        EdgeInsets.symmetric(vertical: 5, horizontal: 0),
+                            EdgeInsets.symmetric(vertical: 5, horizontal: 0),
                         width: 230,
                         child: Text(
                           'Sign Up',
@@ -133,9 +141,18 @@ class AuthScreen extends StatelessWidget {
             Card(
               color: Theme.of(context).accentColor,
               child: TextButton(
-                onPressed: () {
-                  Navigator.push(
-                      context, MaterialPageRoute(builder: (context) => Home()));
+                onPressed: () async {
+                  setState(() {
+                    isLoading = true;
+                  });
+                  await auth.googleSignIn();
+                  setState(() {
+                    isLoading = false;
+                  });
+                  if (auth.isSignedIn && auth.userData != null) {
+                    Navigator.push(context,
+                        MaterialPageRoute(builder: (context) => Home()));
+                  }
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0),

@@ -14,6 +14,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "966624602865-5ma9t8i4fduoc885tj0541n6nnf2jc64.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.healery",
+            "certificate_hash": "30b7a181e092e7684916424b0c94cce640e82d3e"
+          }
+        },
+        {
+          "client_id": "966624602865-g9ti1s520t0uf39qpb3vprqcqgkmf2a1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.healery",
+            "certificate_hash": "2094d5e84dfecdb5ca18884476d9c96beaa06871"
+          }
+        },
+        {
           "client_id": "966624602865-dbmcerm5e3uh2sv2hl2kdn3pq7po960s.apps.googleusercontent.com",
           "client_type": 3
         }
