@@ -6,5 +6,5 @@ ThemeData darkTheme = ThemeData(
   disabledColor: Color.fromRGBO(27, 27, 27, 1),
   primaryColor: Colors.white,
   brightness: Brightness.dark,
-  accentColor: Colors.teal.shade300,
+  accentColor: Color(0xFF6f5975),
 );

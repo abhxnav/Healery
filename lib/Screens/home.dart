@@ -22,19 +22,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Theme.of(context).canvasColor,
-        leading: Container(),
-        title: Text(
-          'Healery',
-          style: TextStyle(
-            fontSize: 25.0,
-            fontFamily: 'Syne',
-            color: Theme.of(context).accentColor,
-          ),
-        ),
-        centerTitle: true,
-      ),
       body: screens[_selectedItemPosition],
       bottomNavigationBar: SnakeNavigationBar.color(
         behaviour: SnakeBarBehaviour.floating,

@@ -27,65 +27,80 @@ class FeedScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: ListView.builder(
-        itemBuilder: (context, index) => Container(
-          margin: EdgeInsets.symmetric(vertical: 20),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                children: [
-                  SizedBox(width: 10),
-                  CircleAvatar(
-                    radius: 22,
-                    backgroundImage: NetworkImage(
-                      data[index]['profilePic'],
-                    ),
-                  ),
-                  SizedBox(width: 10),
-                  Text(data[index]['name']),
-                  Spacer(),
-                  Text(data[index]['timestamp'],
-                      style: TextStyle(color: Colors.grey)),
-                  SizedBox(width: 10),
-                ],
-              ),
-              SizedBox(height: 20),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  data[index]['postTitle'],
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
-                ),
-              ),
-              SizedBox(height: 20),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 10),
-                child: Text(
-                  data[index]['postText'],
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
-                ),
-              ),
-              SizedBox(height: 20),
-              Row(
-                children: [
-                  SizedBox(width: 10),
-                  Icon(Icons.favorite_rounded, color: Colors.red),
-                  SizedBox(width: 5),
-                  Text(data[index]['likes'].toString()),
-                  SizedBox(width: 30),
-                  Icon(Icons.message_rounded),
-                  SizedBox(width: 5),
-                  Text(data[index]['comments'].toString()),
-                ],
-              ),
-            ],
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).canvasColor,
+        title: Text(
+          'Healery',
+          style: TextStyle(
+            fontSize: 25.0,
+            fontFamily: 'Syne',
+            fontWeight: FontWeight.w600,
+            color: Theme.of(context).accentColor,
           ),
         ),
-        shrinkWrap: true,
-        itemCount: data.length,
+        centerTitle: true,
+      ),
+      body: Container(
+        child: ListView.builder(
+          itemBuilder: (context, index) => Container(
+            margin: EdgeInsets.symmetric(vertical: 20),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  children: [
+                    SizedBox(width: 10),
+                    CircleAvatar(
+                      radius: 22,
+                      backgroundImage: NetworkImage(
+                        data[index]['profilePic'],
+                      ),
+                    ),
+                    SizedBox(width: 10),
+                    Text(data[index]['name']),
+                    Spacer(),
+                    Text(data[index]['timestamp'],
+                        style: TextStyle(color: Colors.grey)),
+                    SizedBox(width: 10),
+                  ],
+                ),
+                SizedBox(height: 20),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    data[index]['postTitle'],
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.w800),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Container(
+                  margin: EdgeInsets.symmetric(horizontal: 10),
+                  child: Text(
+                    data[index]['postText'],
+                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w600),
+                  ),
+                ),
+                SizedBox(height: 20),
+                Row(
+                  children: [
+                    SizedBox(width: 10),
+                    Icon(Icons.favorite_rounded, color: Colors.red),
+                    SizedBox(width: 5),
+                    Text(data[index]['likes'].toString()),
+                    SizedBox(width: 30),
+                    Icon(Icons.message_rounded),
+                    SizedBox(width: 5),
+                    Text(data[index]['comments'].toString()),
+                  ],
+                ),
+              ],
+            ),
+          ),
+          shrinkWrap: true,
+          itemCount: data.length,
+        ),
       ),
     );
   }
