@@ -150,13 +150,13 @@ class _AuthScreenState extends State<AuthScreen> {
                     isLoading = false;
                   });
                   if (auth.isSignedIn && auth.userData != null) {
-                    Navigator.push(context,
+                    Navigator.pushReplacement(context,
                         MaterialPageRoute(builder: (context) => Home()));
                   }
                 },
                 child: Container(
                   padding: EdgeInsets.symmetric(vertical: 5, horizontal: 0),
-                  width: 230,
+                  width: 260,
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -171,7 +171,12 @@ class _AuthScreenState extends State<AuthScreen> {
                         style: TextStyle(
                           color: Colors.white,
                         ),
-                      )
+                      ),
+                      SizedBox(width: 20),
+                      if (isLoading)
+                        CircularProgressIndicator(
+                          backgroundColor: Theme.of(context).backgroundColor,
+                        ),
                     ],
                   ),
                 ),

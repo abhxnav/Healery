@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_snake_navigationbar/flutter_snake_navigationbar.dart';
-import 'package:healery/Widgets/home_screen.dart';
+import 'package:healery/Widgets/feed_screen.dart';
 import 'package:healery/Widgets/post_screen.dart';
 import 'package:healery/Widgets/profile_screen.dart';
 import 'package:healery/Widgets/search_screen.dart';
@@ -13,7 +13,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   int _selectedItemPosition = 0;
   List<Widget> screens = [
-    HomeScreen(),
+    FeedScreen(),
     PostScreen(),
     SearchScreen(),
     ProfileScreen(),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+class FeedScreen extends StatelessWidget {
   List<Map> data = [
     {
       'name': 'Albert Camus',
