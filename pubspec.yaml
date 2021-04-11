@@ -32,10 +32,21 @@ flutter:
 
 
   assets:
-    - assets/images/logo.png
-    - assets/images/google_logo.png
+    - assets/images/
 
   fonts:
   - family: Syne
     fonts:
     - asset: assets/fonts/SyneMono-Regular.ttf
+
+  - family: Nunito
+    fonts:
+    - asset: assets/fonts/Nunito-Black.ttf
+
+  - family: Balsamiq
+    fonts:
+    - asset: assets/fonts/BalsamiqSans-Regular.ttf
+
+  - family: Dancing
+    fonts:
+    - asset: assets/fonts/Dancing.ttf
