@@ -122,6 +122,8 @@ class _PostScreenState extends State<PostScreen> {
                           'content': content.text,
                           'timestamp': DateTime.now().millisecondsSinceEpoch,
                           'isAnon': choice == 'Anonymous',
+                          'likes': 0,
+                          'comments': 0,
                         });
                         setState(() {
                           isLoading = false;
