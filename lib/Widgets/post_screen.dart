@@ -21,6 +21,7 @@ class _PostScreenState extends State<PostScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: isLoading
           ? Center(child: CircularProgressIndicator())
           : Container(

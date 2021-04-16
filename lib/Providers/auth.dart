@@ -69,6 +69,7 @@ class Auth extends ChangeNotifier {
         'userID': user.uid,
         'name': user.displayName,
         'profilePic': user.photoURL,
+        'caseInsensitiveFullName': user.displayName.toLowerCase(),
       });
     }
 
