@@ -59,8 +59,11 @@ class FeedScreen extends StatelessWidget {
                       ),
                     ),
                     SizedBox(width: 10),
-                    Text(data[index]['name'],
-                    style: TextStyle(fontFamily: 'Balsamiq', fontWeight: FontWeight.w500),),
+                    Text(
+                      data[index]['name'],
+                      style: TextStyle(
+                          fontFamily: 'Balsamiq', fontWeight: FontWeight.w500),
+                    ),
                     Spacer(),
                     Text(data[index]['timestamp'],
                         style: TextStyle(color: Colors.grey)),
@@ -72,7 +75,10 @@ class FeedScreen extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
                     data[index]['postTitle'],
-                    style: TextStyle(fontFamily: 'Balsamiq', fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontFamily: 'Balsamiq',
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -80,7 +86,10 @@ class FeedScreen extends StatelessWidget {
                   margin: EdgeInsets.symmetric(horizontal: 10),
                   child: Text(
                     data[index]['postText'],
-                    style: TextStyle(fontFamily: 'Balsamiq',fontSize: 15, fontWeight: FontWeight.normal),
+                    style: TextStyle(
+                        fontFamily: 'Balsamiq',
+                        fontSize: 15,
+                        fontWeight: FontWeight.normal),
                   ),
                 ),
                 SizedBox(height: 20),
@@ -89,13 +98,19 @@ class FeedScreen extends StatelessWidget {
                     SizedBox(width: 10),
                     Icon(Icons.favorite_rounded, color: Colors.red),
                     SizedBox(width: 5),
-                    Text(data[index]['likes'].toString(),
-                      style: TextStyle(fontFamily: 'Balsamiq', fontWeight: FontWeight.w500),),
+                    Text(
+                      data[index]['likes'].toString(),
+                      style: TextStyle(
+                          fontFamily: 'Balsamiq', fontWeight: FontWeight.w500),
+                    ),
                     SizedBox(width: 30),
                     Icon(Icons.message_rounded),
                     SizedBox(width: 5),
-                    Text(data[index]['comments'].toString(),
-                      style: TextStyle(fontFamily: 'Balsamiq', fontWeight: FontWeight.w500),),
+                    Text(
+                      data[index]['comments'].toString(),
+                      style: TextStyle(
+                          fontFamily: 'Balsamiq', fontWeight: FontWeight.w500),
+                    ),
                   ],
                 ),
               ],

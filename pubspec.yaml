@@ -21,6 +21,7 @@ dependencies:
   provider: ^4.3.3
   paginate_firestore: ^0.3.1
   flutter_snake_navigationbar: ^0.5.0
+  crypto: ^2.1.5
 
   animated_splash_screen: ^1.1.0
   splashscreen: ^1.2.0
