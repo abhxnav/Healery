@@ -124,6 +124,7 @@ class _PostScreenState extends State<PostScreen> {
                           'isAnon': choice == 'Anonymous',
                           'likes': 0,
                           'comments': 0,
+                          'liked': [],
                         });
                         setState(() {
                           isLoading = false;

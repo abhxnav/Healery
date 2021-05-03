@@ -1,9 +1,32 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:healery/Providers/auth.dart';
 import 'package:healery/Screens/auth_screen.dart';
+import 'package:healery/Widgets/post_item.dart';
+import 'package:healery/main.dart';
+import 'package:paginate_firestore/paginate_firestore.dart';
 
-class ProfileScreen extends StatelessWidget {
+class ProfileScreen extends StatefulWidget {
+  @override
+  _ProfileScreenState createState() => _ProfileScreenState();
+}
+
+class _ProfileScreenState extends State<ProfileScreen> {
+  List<QueryDocumentSnapshot> posts = [];
+  int likes = 0;
+
+  Future load() async {
+    posts = await DB
+        .collection('posts')
+        .where('userID', isEqualTo: auth.user.uid)
+        .get()
+        .then((value) => value.docs);
+    for (var post in posts) {
+      likes += post.data()['likes'];
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,7 +35,7 @@ class ProfileScreen extends StatelessWidget {
         backgroundColor: Theme.of(context).accentColor,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          "username",
+          "Profile",
           style: TextStyle(
               fontSize: 20,
               fontFamily: 'Balsamiq',
@@ -21,149 +44,174 @@ class ProfileScreen extends StatelessWidget {
         ),
       ),
       drawer: MyDrawer(),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.all(20),
-                child: CircleAvatar(
-                  radius: 50,
-                  backgroundImage: NetworkImage(auth.userData['profilePic']),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+      body: FutureBuilder(
+        future: load(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
                   children: [
-                    Text(
-                      (auth.userData["name"]),
-                      style: TextStyle(
-                        fontFamily: 'Balsamiq',
-                        fontSize:25,
+                    Padding(
+                      padding: const EdgeInsets.all(20),
+                      child: CircleAvatar(
+                        radius: 50,
+                        backgroundImage:
+                            NetworkImage(auth.userData['profilePic']),
                       ),
                     ),
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Icon(Icons.location_on, color: Colors.white, size: 12),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 6),
-                          child: Text(
-                            'location',
+                    Padding(
+                      padding: const EdgeInsets.only(left: 10),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            (auth.userData["name"]),
                             style: TextStyle(
                               fontFamily: 'Balsamiq',
-                              color: Colors.white,
-                              wordSpacing: 2,
-                              letterSpacing: 4,
+                              fontSize: 25,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Card(
-                      //TODO create border for this button
-                      color: Theme.of(context).accentColor,
-                      child: Text(
-                          'edit profile',
-                        style: TextStyle(
-                          letterSpacing: 1.5,
-                          fontFamily: 'Balsamiq',
-                          color: Colors.white,
-                        ),
+                          // Row(
+                          //   crossAxisAlignment: CrossAxisAlignment.center,
+                          //   children: [
+                          //     Icon(Icons.location_on,
+                          //         color: Colors.white, size: 12),
+                          //     Padding(
+                          //       padding: const EdgeInsets.only(left: 6),
+                          //       child: Text(
+                          //         'location',
+                          //         style: TextStyle(
+                          //           fontFamily: 'Balsamiq',
+                          //           color: Colors.white,
+                          //           wordSpacing: 2,
+                          //           letterSpacing: 4,
+                          //         ),
+                          //       ),
+                          //     ),
+                          //   ],
+                          // ),
+                          // Card(
+                          //   //TODO create border for this button
+                          //   color: Theme.of(context).accentColor,
+                          //   child: Text(
+                          //     'edit profile',
+                          //     style: TextStyle(
+                          //       letterSpacing: 1.5,
+                          //       fontFamily: 'Balsamiq',
+                          //       color: Colors.white,
+                          //     ),
+                          //   ),
+                          // ),
+                        ],
                       ),
                     ),
                   ],
                 ),
-              ),
-            ],
-          ),
-          Padding(
-            padding: const EdgeInsets.only(top: 5, bottom: 10, right: 50, left: 50),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '00',
-                      style: TextStyle(
-                        fontFamily: 'Balsamiq',
-                        fontSize: 25,
+                Padding(
+                  padding: const EdgeInsets.only(
+                      top: 5, bottom: 10, right: 50, left: 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      // Column(
+                      //   mainAxisAlignment: MainAxisAlignment.center,
+                      //   children: [
+                      //     Text(
+                      //       '00',
+                      //       style: TextStyle(
+                      //         fontFamily: 'Balsamiq',
+                      //         fontSize: 25,
+                      //       ),
+                      //     ),
+                      //     Text(
+                      //       'FOLLOWERS',
+                      //       style: TextStyle(
+                      //         fontFamily: 'Balsamiq',
+                      //         fontSize: 10,
+                      //       ),
+                      //     ),
+                      //   ],
+                      // ),
+                      Container(
+                        color: Colors.white,
+                        width: 0.2,
+                        height: 22,
                       ),
-                    ),
-                    Text(
-                      'FOLLOWERS',
-                      style: TextStyle(
-                        fontFamily: 'Balsamiq',
-                        fontSize: 10,
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            likes.toString(),
+                            style: TextStyle(
+                              fontFamily: 'Balsamiq',
+                              fontSize: 25,
+                            ),
+                          ),
+                          Text(
+                            "likes",
+                            style: TextStyle(
+                              fontFamily: 'Balsamiq',
+                              fontSize: 10,
+                            ),
+                          ),
+                        ],
                       ),
-                    ),
-                  ],
-                ),
-                Container(
-                  color: Colors.white,
-                  width: 0.2,
-                  height: 22,
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      '00',
-                      style: TextStyle(
-                        fontFamily: 'Balsamiq',
-                        fontSize: 25,
+                      Container(
+                        color: Colors.white,
+                        width: 0.2,
+                        height: 22,
                       ),
-                    ),
-                    Text(
-                      'LIKES',
-                      style: TextStyle(
-                        fontFamily: 'Balsamiq',
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
+                      // RaisedButton(
+                      //   textColor: Colors.white,
+                      //   color: Theme.of(context).canvasColor,
+                      //   child: Text(
+                      //     'follow +',
+                      //     style: TextStyle(
+                      //       fontFamily: 'Balsamiq',
+                      //       color: Colors.white,
+                      //     ),
+                      //   ),
+                      //   shape: RoundedRectangleBorder(
+                      //     borderRadius: BorderRadius.circular(30),
+                      //   ),
+                      //   onPressed: null,
+                      // ),
+                    ],
+                  ),
                 ),
-                Container(
-                  color: Colors.white,
-                  width: 0.2,
-                  height: 22,
-                ),
-                RaisedButton(
-                  textColor: Colors.white,
-                  color: Theme.of(context).canvasColor,
-                  child: Text(
-                    'follow +',
-                    style: TextStyle(
-                      fontFamily: 'Balsamiq',
-                      color: Colors.white,
+                Expanded(
+                  child: Container(
+                    width: double.infinity,
+                    child: PaginateFirestore(
+                        query: DB
+                            .collection('posts')
+                            .where('userID', isEqualTo: auth.user.uid),
+                        itemsPerPage: 10,
+                        shrinkWrap: true,
+                        itemBuilderType: PaginateBuilderType.listView,
+                        itemBuilder: (int index, BuildContext context,
+                                DocumentSnapshot data) =>
+                            PostItem(
+                              data: data,
+                            )),
+                    margin: EdgeInsets.only(top: 15),
+                    decoration: BoxDecoration(
+                      color: Theme.of(context).canvasColor,
+                      borderRadius:
+                          BorderRadius.vertical(top: Radius.circular(35)),
                     ),
                   ),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(30),
-                  ),
-                  onPressed: null,
                 ),
               ],
-            ),
-          ),
-          Expanded(
-            child: Container(
-              width: double.infinity,
-              margin: EdgeInsets.only(top: 15),
-              decoration: BoxDecoration(
-                color: Theme.of(context).canvasColor,
-                borderRadius: BorderRadius.vertical(top: Radius.circular(35)),
-              ),
-            ),
-          ),
-        ],
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
@@ -208,7 +256,8 @@ class MyDrawer extends StatelessWidget {
                       width: 60,
                       height: 60,
                       child: CircleAvatar(
-                        backgroundImage: NetworkImage(auth.userData['profilePic']),
+                        backgroundImage:
+                            NetworkImage(auth.userData['profilePic']),
                       ),
                     ),
                     SizedBox(height: 15),
@@ -263,10 +312,6 @@ class MyDrawer extends StatelessWidget {
     );
   }
 }
-
-
-
-
 
 // TextButton(),
 // TextButton(
@@ -377,9 +422,6 @@ class MyDrawer extends StatelessWidget {
 //   ),
 // ),
 
-
-
-
 // Column(
 //   mainAxisAlignment: MainAxisAlignment.end,
 //   children: [
@@ -401,8 +443,6 @@ class MyDrawer extends StatelessWidget {
 //   painter: Header(),
 // ),
 
-
-
 // SizedBox(height: 20),
 // Padding(
 //   padding: EdgeInsets.all(20),
@@ -416,8 +456,6 @@ class MyDrawer extends StatelessWidget {
 //         fontWeight: FontWeight.w600),
 //   ),
 // ),
-
-
 
 // RaisedButton(
 // textColor: Colors.white,

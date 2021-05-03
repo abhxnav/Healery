@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:healery/Providers/auth.dart';
 import 'package:healery/Widgets/post_item.dart';
 import 'package:healery/main.dart';
 import 'package:paginate_firestore/paginate_firestore.dart';
@@ -35,7 +36,9 @@ class _FeedScreenState extends State<FeedScreen> {
             itemBuilderType: PaginateBuilderType.listView,
             itemBuilder:
                 (int index, BuildContext context, DocumentSnapshot data) =>
-                    PostItem(data: data)),
+                    PostItem(
+                      data: data,
+                    )),
       ),
     );
   }
