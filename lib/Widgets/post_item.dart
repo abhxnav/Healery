@@ -37,7 +37,7 @@ class _PostItemState extends State<PostItem> {
     }
 
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+      margin: EdgeInsets.symmetric(vertical: 10, horizontal: 10),
       child: FutureBuilder(
           future: load(),
           builder: (context, snapshot) {
@@ -56,7 +56,7 @@ class _PostItemState extends State<PostItem> {
                                 snapshot.data['profilePic'],
                               ),
                             ),
-                      SizedBox(width: 10),
+                      SizedBox(width: 15),
                       Text(
                         widget.data.data()['isAnon']
                             ? 'Anonymous'
@@ -85,7 +85,7 @@ class _PostItemState extends State<PostItem> {
                       style: TextStyle(
                           fontFamily: 'Balsamiq',
                           fontSize: 18,
-                          fontWeight: FontWeight.bold),
+                          fontWeight: FontWeight.w500),
                     ),
                   ),
                   SizedBox(height: 10),
@@ -99,7 +99,7 @@ class _PostItemState extends State<PostItem> {
                           fontWeight: FontWeight.normal),
                     ),
                   ),
-                  SizedBox(height: 20),
+                  SizedBox(height: 15),
                   Row(
                     children: [
                       SizedBox(width: 10),
@@ -160,13 +160,11 @@ class _PostItemState extends State<PostItem> {
                       ),
                     ],
                   ),
-                  SizedBox(height: 10),
                   Divider(),
                 ],
               );
             } else {
               return Container(
-                height: 200,
                 color: Theme.of(context).backgroundColor,
               );
             }

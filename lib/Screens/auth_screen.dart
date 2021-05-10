@@ -1,8 +1,7 @@
-//TODO make login related changes.
-
 import 'package:flutter/material.dart';
 import 'package:healery/Providers/auth.dart';
 import 'package:healery/Screens/home.dart';
+import 'package:flutter_twitter/flutter_twitter.dart';
 
 class AuthScreen extends StatefulWidget {
   @override
@@ -14,29 +13,29 @@ class _AuthScreenState extends State<AuthScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Theme.of(context).accentColor,
+      backgroundColor: Theme.of(context).canvasColor,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              child: Image(
-                image: AssetImage('assets/images/logo.png'),
-                color: Colors.white,
-              ),
-            ),
-            SizedBox(height: 40),
             Text(
               'Healery',
               style: TextStyle(
                 fontFamily: 'Dancing',
                 fontWeight: FontWeight.bold,
                 fontSize: 50.0,
-                color: Colors.white,
+                color: Theme.of(context).accentColor,
               ),
             ),
-            SizedBox(height: 150),
-            FlatButton(
+            SizedBox(height: 50),
+            Divider(
+              height: 20,
+              thickness: 2, 
+              indent: 50,
+              endIndent: 50,
+            ),
+            SizedBox(height: 50),
+            RaisedButton(
               color: Theme.of(context).accentColor,
               child: TextButton(
                 onPressed: () async {
@@ -80,7 +79,8 @@ class _AuthScreenState extends State<AuthScreen> {
                 ),
               ),
             ),
-            FlatButton(
+            SizedBox(height: 15),
+            RaisedButton(
               color: Theme.of(context).accentColor,
               child: TextButton(
                 onPressed: () async {
@@ -103,7 +103,7 @@ class _AuthScreenState extends State<AuthScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Image.asset(
-                        'assets/images/image.png',
+                        'assets/images/twitter_logo1.png',
                         width: 20,
                         fit: BoxFit.cover,
                       ),

@@ -36,7 +36,7 @@ class _PostScreenState extends State<PostScreen> {
                       controller: title,
                       decoration: InputDecoration(
                         contentPadding:
-                            EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                            EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                         hintText: 'Title text here..',
                         hintStyle: TextStyle(
                             color: Colors.grey.shade700,
@@ -44,21 +44,21 @@ class _PostScreenState extends State<PostScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: 60),
+                  SizedBox(height: 20),
                   TextField(
-                    maxLines: 5,
+                    maxLines: 10,
                     controller: content,
                     decoration: InputDecoration(
                       contentPadding:
-                          EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 5),
                       hintText: 'What\'s on your mind today?',
                       hintStyle: TextStyle(
                           color: Colors.grey.shade700, fontFamily: 'Balsamiq'),
                     ),
                   ),
-                  SizedBox(height: 30),
+                  SizedBox(height: 40),
                   Container(
-                    width: 110,
+                    width: 1100,
                     padding: EdgeInsets.only(left: 12, right: 12),
                     decoration: BoxDecoration(
                       border: Border.all(
@@ -89,47 +89,49 @@ class _PostScreenState extends State<PostScreen> {
                       }).toList(),
                     ),
                   ),
-                  SizedBox(height: 100),
-                  Container(
-                    width: 200,
-                    height: 50,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(40),
-                      color: Theme.of(context).accentColor,
-                    ),
-                    child: FlatButton(
-                      child: Text(
-                        'post',
-                        style: TextStyle(
-                          fontFamily: 'Balsamiq',
-                          color: Colors.white,
-                        ),
+                  SizedBox(height: 50),
+                  Center(
+                    child: Container(
+                      width: 200,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(40),
+                        color: Theme.of(context).accentColor,
                       ),
-                      onPressed: () async {
-                        if (title.text.isEmpty || content.text.isEmpty) return;
+                      child: FlatButton(
+                        child: Text(
+                          'post',
+                          style: TextStyle(
+                            fontFamily: 'Balsamiq',
+                            color: Colors.white,
+                          ),
+                        ),
+                        onPressed: () async {
+                          if (title.text.isEmpty || content.text.isEmpty) return;
 
-                        setState(() {
-                          isLoading = true;
-                        });
-                        String ID = md5
-                            .convert(
-                                utf8.encode(DateTime.now().toIso8601String()))
-                            .toString();
-                        await DB.collection('posts').doc(ID).set({
-                          'ID': ID,
-                          'userID': auth.userData["userID"],
-                          'title': title.text,
-                          'content': content.text,
-                          'timestamp': DateTime.now().millisecondsSinceEpoch,
-                          'isAnon': choice == 'Anonymous',
-                          'likes': 0,
-                          'comments': 0,
-                          'liked': [],
-                        });
-                        setState(() {
-                          isLoading = false;
-                        });
-                      },
+                          setState(() {
+                            isLoading = true;
+                          });
+                          String ID = md5
+                              .convert(
+                                  utf8.encode(DateTime.now().toIso8601String()))
+                              .toString();
+                          await DB.collection('posts').doc(ID).set({
+                            'ID': ID,
+                            'userID': auth.userData["userID"],
+                            'title': title.text,
+                            'content': content.text,
+                            'timestamp': DateTime.now().millisecondsSinceEpoch,
+                            'isAnon': choice == 'Anonymous',
+                            'likes': 0,
+                            'comments': 0,
+                            'liked': [],
+                          });
+                          setState(() {
+                            isLoading = false;
+                          });
+                        },
+                      ),
                     ),
                   ),
                 ],

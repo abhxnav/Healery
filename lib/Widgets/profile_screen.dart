@@ -35,7 +35,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         backgroundColor: Theme.of(context).accentColor,
         iconTheme: IconThemeData(color: Colors.white),
         title: Text(
-          "Profile",
+          "username",
           style: TextStyle(
               fontSize: 20,
               fontFamily: 'Balsamiq',
@@ -52,27 +52,25 @@ class _ProfileScreenState extends State<ProfileScreen> {
               mainAxisAlignment: MainAxisAlignment.start,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: CircleAvatar(
-                        radius: 50,
+                Padding(
+                  padding: const EdgeInsets.only(top: 20, left: 60, right: 60, bottom: 20),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      CircleAvatar(
+                        radius: 40,
                         backgroundImage:
                             NetworkImage(auth.userData['profilePic']),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 10),
-                      child: Column(
+                      SizedBox(width: 20),
+                      Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Text(
                             (auth.userData["name"]),
                             style: TextStyle(
                               fontFamily: 'Balsamiq',
-                              fontSize: 25,
+                              fontSize: 20,
                             ),
                           ),
                           // Row(
@@ -94,48 +92,51 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           //     ),
                           //   ],
                           // ),
-                          // Card(
-                          //   //TODO create border for this button
-                          //   color: Theme.of(context).accentColor,
-                          //   child: Text(
-                          //     'edit profile',
-                          //     style: TextStyle(
-                          //       letterSpacing: 1.5,
-                          //       fontFamily: 'Balsamiq',
-                          //       color: Colors.white,
-                          //     ),
-                          //   ),
-                          // ),
+                          SizedBox(height: 5),
+                          Container(
+                            padding: const EdgeInsets.all(3),
+                            decoration: BoxDecoration(
+                                border: Border.all(color: Colors.white, width: 1)
+                            ),
+                            child: Text(
+                              'edit profile',
+                              style: TextStyle(
+                                letterSpacing: 1.5,
+                                fontFamily: 'Balsamiq',
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
                         ],
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.only(
-                      top: 5, bottom: 10, right: 50, left: 50),
+                      top: 1, bottom: 10, right: 40, left: 40),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      // Column(
-                      //   mainAxisAlignment: MainAxisAlignment.center,
-                      //   children: [
-                      //     Text(
-                      //       '00',
-                      //       style: TextStyle(
-                      //         fontFamily: 'Balsamiq',
-                      //         fontSize: 25,
-                      //       ),
-                      //     ),
-                      //     Text(
-                      //       'FOLLOWERS',
-                      //       style: TextStyle(
-                      //         fontFamily: 'Balsamiq',
-                      //         fontSize: 10,
-                      //       ),
-                      //     ),
-                      //   ],
-                      // ),
+                      Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            '2',
+                            style: TextStyle(
+                              fontFamily: 'Balsamiq',
+                              fontSize: 25,
+                            ),
+                          ),
+                          Text(
+                            'Posts',
+                            style: TextStyle(
+                              fontFamily: 'Balsamiq',
+                              fontSize: 12,
+                            ),
+                          ),
+                        ],
+                      ),
                       Container(
                         color: Colors.white,
                         width: 0.2,
@@ -155,7 +156,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             "likes",
                             style: TextStyle(
                               fontFamily: 'Balsamiq',
-                              fontSize: 10,
+                              fontSize: 12,
                             ),
                           ),
                         ],
@@ -165,21 +166,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
                         width: 0.2,
                         height: 22,
                       ),
-                      // RaisedButton(
-                      //   textColor: Colors.white,
-                      //   color: Theme.of(context).canvasColor,
-                      //   child: Text(
-                      //     'follow +',
-                      //     style: TextStyle(
-                      //       fontFamily: 'Balsamiq',
-                      //       color: Colors.white,
-                      //     ),
-                      //   ),
-                      //   shape: RoundedRectangleBorder(
-                      //     borderRadius: BorderRadius.circular(30),
-                      //   ),
-                      //   onPressed: null,
-                      // ),
+                      RaisedButton(
+                        textColor: Colors.white,
+                        color: Theme.of(context).canvasColor,
+                        child: Text(
+                          'follow +',
+                          style: TextStyle(
+                            fontFamily: 'Balsamiq',
+                            color: Colors.white,
+                          ),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(30),
+                        ),
+                        onPressed: null,
+                      ),
                     ],
                   ),
                 ),
@@ -202,7 +203,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     decoration: BoxDecoration(
                       color: Theme.of(context).canvasColor,
                       borderRadius:
-                          BorderRadius.vertical(top: Radius.circular(35)),
+                          BorderRadius.vertical(top: Radius.circular(20)),
                     ),
                   ),
                 ),
@@ -283,9 +284,59 @@ class MyDrawer extends StatelessWidget {
               ),
             ),
             ListTile(
+              leading: Icon(Icons.location_searching_outlined),
+              title: Text(
+                'Location',
+                style: TextStyle(
+                  fontFamily: 'Balsamiq',
+                ),
+              ),
+              onTap: () => onTap(context, 0),
+            ),
+            ListTile(
+              leading: Icon(Icons.mood_outlined),
+              title: Text(
+                'Know your Mental Status',
+                style: TextStyle(
+                  fontFamily: 'Balsamiq',
+                ),
+              ),
+              onTap: () => onTap(context, 0),
+            ),
+            ListTile(
+              leading: Icon(Icons.equalizer_outlined),
+              title: Text(
+                'Mood History',
+                style: TextStyle(
+                  fontFamily: 'Balsamiq',
+                ),
+              ),
+              onTap: () => onTap(context, 0),
+            ),
+            ListTile(
+              leading: Icon(Icons.my_library_books_outlined),
+              title: Text(
+                'Resources',
+                style: TextStyle(
+                  fontFamily: 'Balsamiq',
+                ),
+              ),
+              onTap: () => onTap(context, 0),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text(
+                'Settings',
+                style: TextStyle(
+                  fontFamily: 'Balsamiq',
+                ),
+              ),
+              onTap: () => onTap(context, 0),
+            ),
+            ListTile(
               leading: Icon(Icons.lock_open_outlined),
               title: Text(
-                'Privacy',
+                'Privacy Policy',
                 style: TextStyle(
                   fontFamily: 'Balsamiq',
                 ),

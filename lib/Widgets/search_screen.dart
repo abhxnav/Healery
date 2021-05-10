@@ -79,6 +79,7 @@ class _SearchScreenState extends State<SearchScreen> {
 
   AppBar searchScreenHeader() {
     return AppBar(
+      toolbarHeight: 40,
       backgroundColor: Theme.of(context).canvasColor,
       title: TextFormField(
         style: TextStyle(
@@ -123,14 +124,14 @@ class _SearchScreenState extends State<SearchScreen> {
         child: ListView(
           shrinkWrap: true,
           children: [
-            Icon(Icons.group, color: Colors.grey.shade700, size: 100),
+            Icon(Icons.group, color: Colors.grey.shade700, size: 70),
             Text(
               "Search Users",
               textAlign: TextAlign.center,
               style: TextStyle(
-                  color: Colors.white,
+                  color: Colors.grey.shade500,
                   fontWeight: FontWeight.w500,
-                  fontSize: 30),
+                  fontSize: 20),
             ),
           ],
         ),

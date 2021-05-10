@@ -29,16 +29,16 @@ class _FeedScreenState extends State<FeedScreen> {
       ),
       body: Container(
         child: PaginateFirestore(
-            query:
-                DB.collection('posts').orderBy('timestamp', descending: true),
-            itemsPerPage: 10,
-            shrinkWrap: true,
-            itemBuilderType: PaginateBuilderType.listView,
-            itemBuilder:
-                (int index, BuildContext context, DocumentSnapshot data) =>
-                    PostItem(
-                      data: data,
-                    )),
+          query: DB.collection('posts').orderBy('timestamp', descending: true),
+          itemsPerPage: 10,
+          shrinkWrap: true,
+          itemBuilderType: PaginateBuilderType.listView,
+          itemBuilder:
+              (int index, BuildContext context, DocumentSnapshot data) =>
+                  PostItem(
+            data: data,
+          ),
+        ),
       ),
     );
   }
